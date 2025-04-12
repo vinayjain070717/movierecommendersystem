@@ -3,11 +3,17 @@ package io.datajek.spring.basics.movierecommendersystem.services;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
+import org.slf4j.Logger;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 
 @Component
 @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class Movie {
+    private Logger logger=org.slf4j.LoggerFactory.getLogger(this.getClass());
     private static int instance=0;
 
     private int id;
@@ -18,6 +24,16 @@ public class Movie {
     public Movie(){
         instance++;
         System.out.println("Movie constructor called: "+instance);
+    }
+
+    @PostConstruct
+    private void postConstruct(){
+        logger.info("In Movie, postConstruct() method: "+instance);
+    }
+
+    @PreDestroy
+    private void preDestroy(){
+        logger.info("In Movie, preDestroy() method: "+instance);
     }
 
     public static int getInstance(){

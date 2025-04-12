@@ -29,6 +29,11 @@ public class MovierecommendersystemApplication {
 		// System.out.println("CollabrativeFilter: "+filter2);
 		RecommenderImplementation recommender=appContext.getBean(RecommenderImplementation.class);
 		System.out.println("RecommenderImplementation: "+recommender);
+
+		Movie m1=appContext.getBean(Movie.class);
+		System.out.println("Movie 1: "+m1);
+		Movie m2=appContext.getBean(Movie.class);
+		System.out.println("Movie 2: "+m2);
 	}
 
 }
